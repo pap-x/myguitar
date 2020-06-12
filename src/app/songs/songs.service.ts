@@ -16,7 +16,7 @@ export class SongsService {
 
   getSongs() {
     this.http
-      .get<{ message: string; songs: any }>("http://myguitar-api.herokuapp.com/songs")
+      .get<{ message: string; songs: any }>("https://myguitar-api.herokuapp.com/songs")
       .pipe(
         map(songData => {
           console.log(songData);
@@ -44,7 +44,7 @@ export class SongsService {
 
   getSong(id: string) {
     return this.http.get<{ _id: string; title: string; content: string; singer: string; category: string }>(
-      "http://myguitar-api.herokuapp.com/songs/" + id
+      "https://myguitar-api.herokuapp.com/songs/" + id
     );
   }
 
@@ -52,7 +52,7 @@ export class SongsService {
     const song: Song = { id: null, title: title, content: content, singer: singer, category: "category" };
     this.http
       .post<{ message: string; songId: string }>(
-        "http://myguitar-api.herokuapp.com/songs",
+        "https://myguitar-api.herokuapp.com/songs",
         song
       )
       .subscribe(responseData => {
@@ -67,7 +67,7 @@ export class SongsService {
   updateSong(id: string, title: string, content: string, singer: string, category: string) {
     const song: Song = { id: id, title: title, content: content, singer: singer, category: "category" };
     this.http
-      .put("http://myguitar-api.herokuapp.com/songs/" + id, song)
+      .put("https://myguitar-api.herokuapp.com/songs/" + id, song)
       .subscribe(response => {
         const updatedSongs = [...this.songs];
         const oldSongIndex = updatedSongs.findIndex(p => p.id === song.id);
@@ -80,7 +80,7 @@ export class SongsService {
 
   deleteSong(songId: string) {
     this.http
-      .delete("http://myguitar-api.herokuapp.com/songs/" + songId)
+      .delete("https://myguitar-api.herokuapp.com/songs/" + songId)
       .subscribe(() => {
         const updatedSongs = this.songs.filter(song => song.id !== songId);
         this.songs = updatedSongs;
