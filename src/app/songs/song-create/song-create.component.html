@@ -1,3 +1,45 @@
-<p>
-  song-create works!
-</p>
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="onSaveSong(songForm)" #songForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="title"
+        [ngModel]="song?.title"
+        required
+        minlength="3"
+        placeholder="Song Title"
+        #title="ngModel">
+      <mat-error *ngIf="title.invalid">Please enter a song title.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+      matInput
+      type="text"
+      name="singer"
+      [ngModel]="song?.singer"
+      required
+      minlength="3"
+      placeholder="Artist"
+      #singer="ngModel">
+    <mat-error *ngIf="title.invalid">Please enter a song artist.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        class="song-content"
+        matInput
+        rows="20"
+        name="content"
+        [ngModel]="song?.content"
+        required
+        placeholder="Song"
+        #content="ngModel"></textarea>
+      <mat-error *ngIf="content.invalid">Please enter a song content.</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">Save Song</button>
+  </form>
+</mat-card>

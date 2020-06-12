@@ -1,0 +1,13 @@
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+.song-content {
+  white-space: pre-wrap;
+  word-spacing: 0.25em;
+}

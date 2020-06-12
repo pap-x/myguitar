@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+.info-text {
+  text-align: center;
+}
+
+.song-content {
+  white-space: pre-wrap;
+  word-spacing: 0.27em;
+}
+
+.song-title {
+  font-weight: bold;
+}
