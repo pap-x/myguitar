@@ -1,11 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Song } from '../song.model';
 import { SongsService } from '../songs.service';
+
 @Component({
   selector: 'app-song-list',
   templateUrl: './song-list.component.html',
-  styleUrls: ['./song-list.component.css']
+  styleUrls: ['./song-list.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SongListComponent implements OnInit, OnDestroy
 {
@@ -13,6 +15,9 @@ export class SongListComponent implements OnInit, OnDestroy
   songs: Song[] = [];
   isLoading = false;
   private songsSub: Subscription;
+  filtered_songs: Song[] = [];
+  search = '';
+
   constructor(public songsService: SongsService) { }
 
   ngOnInit() {
@@ -33,6 +38,13 @@ export class SongListComponent implements OnInit, OnDestroy
 
   ngOnDestroy() {
     this.songsSub.unsubscribe();
+  }
+
+  onSearchChange() {
+    console.log(this.search);
+    this.filtered_songs = this.songs.filter((song) => {
+      return song.singer.toLowerCase().includes(this.search.toLowerCase()) || song.title.toLowerCase().includes(this.search.toLowerCase());
+    });
   }
 
 }
