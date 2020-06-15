@@ -27,7 +27,7 @@
     <mat-expansion-panel-header>
       <span class="song-title">{{ song.title }}</span>, {{ song.singer }}
     </mat-expansion-panel-header>
-    <p  class="song-content">{{ song.content }}</p>
+    <div class="song-content" [innerHTML]="song.content"></div>
     <mat-action-row>
       <a mat-button color="primary" [routerLink]="['/edit', song.id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(song.id)">DELETE</button>

@@ -41,7 +41,6 @@ export class SongListComponent implements OnInit, OnDestroy
   }
 
   onSearchChange() {
-    console.log(this.search);
     this.filtered_songs = this.songs.filter((song) => {
       return song.singer.toLowerCase().includes(this.search.toLowerCase()) || song.title.toLowerCase().includes(this.search.toLowerCase());
     });
